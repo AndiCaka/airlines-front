@@ -1,0 +1,10 @@
+.menu{
+  background-color: #05164d;
+  color: white;
+  font-size: large;
+}
+
+
+.mat-button:hover{
+  color: white;
+}

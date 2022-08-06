@@ -1,0 +1,171 @@
+<div class="container my-4">
+<h2 class="display-3 fw-bold mt-4">Manage Airports and Flights</h2>
+  <p class="text-muted">Here the admin has the basic CRUD-OPS for the airport and flight entities.</p>
+  <div class="row">
+    <div class="col">
+      <div class="border p-3 m-3">
+        <h3 class="fw-normal text-muted display-2">Add a new airport.</h3>
+        <form [formGroup]="airportsForm" (ngSubmit)="onAirportSubmit()">
+          <div class="form-group p-1 m-1">
+            <label for="airportName">Name:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="airportName" formControlName="name">
+          </div>
+          <div class="form-group p-1 m-1">
+            <label for="airportCode">Airport Code:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="airportCode" formControlName="airportCode">
+          </div>
+          <div class="form-group p-1 m-1">
+            <label for="airportCity">City:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="airportCity" formControlName="city">
+          </div>
+          <div class="form-group p-1 m-1">
+            <label for="airportFlagUrl">Flag Url Image:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="airportFlagUrl" formControlName="flagUrl">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <div class="border p-3 m-3">
+        <h3 class="fw-normal text-muted display-2">Add a new flight.</h3>
+        <form [formGroup]="flightsForm" (ngSubmit)="onFlightSubmit()">
+          <div class="form-group p-1 m-1">
+            <mat-form-field>
+              <mat-label>Departure</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Airport"
+                     matInput
+                     formControlName="departureAirport"
+                     [matAutocomplete]="departure">
+              <mat-autocomplete #departure="matAutocomplete">
+                <mat-option *ngFor="let option of departureOptions | async" [value]="option">
+                  <img class="img-fluid" alt="" src="{{option.flagUrl}}"/> <span class="fw-bold">{{option.airportCode}}</span> {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="mx-lg-5">
+              <mat-label>Arrival</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Airport"
+                     matInput
+                     formControlName="arrivalAirport"
+                     [matAutocomplete]="arrival">
+              <mat-autocomplete #arrival="matAutocomplete">
+                <mat-option *ngFor="let option of arrivalOptions | async" [value]="option">
+                  <!--TODO: airport flag thing--> <span class="fw-bold">{{option.airportCode}}</span> {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="form-group p-1 m-1">
+            <mat-form-field>
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="departureDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="mx-lg-5">
+              <mat-label>Flight Class</mat-label>
+              <mat-select formControlName="flightClass">
+                <mat-option *ngFor="let flightClass of flightClasses" [value]="flightClass">
+                  {{flightClass}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group p-1 m-1">
+            <label for="flightPrice">Flight price:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="flightPrice" formControlName="flightPrice">
+          </div>
+          <div class="form-group p-1 m-1">
+            <label for="flightCapacity">Flight capacity:<span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" id="flightCapacity" formControlName="capacity">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="border p-3 m-3">
+        <h3 class="fw-normal text-muted display-2">Bulk create flights.</h3>
+          <div class="form-group p-1 m-1">
+            <label for="file">Choose File</label>
+            <input type="file" id="file" name="file" class="form-control" [ngModel]="file" (change)="selectFile($event)">
+          </div>
+          <button type="button" class="btn btn-primary" (click)="onBulkCreateFlightsSubmit()">Submit</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="border p-3 m-3">
+        <h3 class="fw-normal text-muted display-2">Bulk create airports.</h3>
+        <div class="form-group p-1 m-1">
+          <label for="airport-file">Choose File</label>
+          <input type="file" id="airport-file" name="airport-file" class="form-control" [ngModel]="file" (change)="selectFile($event)">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onBulkCreateAirportsSubmit()">Submit</button>
+      </div>
+    </div>
+  <hr class="py-1">
+  <div class="row">
+    <div class="col border p-3 m-3">
+      <table class="table table-bordered table-responsive">
+        <thead class="table-dark">
+        <tr>
+          <td>#</td>
+          <td>Code</td>
+          <td>Name</td>
+          <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let airport of airports">
+          <td>{{airport.id}}</td>
+          <td>{{airport.airportCode}}</td>
+          <td>{{airport.name}}</td>
+          <td>
+            <a routerLink="/airports/{{airport.id}}" class="btn btn-sm btn-primary mx-1">Edit</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteAirport(airport.id)">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col border p-3 m-3">
+      <table class="table table-bordered table-responsive">
+      <thead class="table-dark">
+      <tr>
+        <td>#</td>
+        <td>DepartureAirport</td>
+        <td>ArrivalAirport</td>
+        <td>DepartureTime</td>
+        <td>Price</td>
+        <td>Action</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let flight of flights">
+        <td>{{flight.id}}</td>
+        <td>{{flight.departureAirport.airportCode}}</td>
+        <td>{{flight.arrivalAirport.airportCode}}</td>
+        <td>{{flight.departureDate | date: 'shortTime'}}</td>
+        <td>{{flight.flightPrice | currency: 'EUR'}}</td>
+        <td>
+          <a routerLink="/flights/{{flight.id}}" class="btn btn-sm btn-primary mx-1">Edit</a>
+          <button class="btn btn-sm btn-danger" (click)="deleteFlight(flight.id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+</div>

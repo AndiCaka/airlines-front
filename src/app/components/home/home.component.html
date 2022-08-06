@@ -1,0 +1,194 @@
+<div class="container mt-5 mb-5">
+
+
+  <div id="carouselExampleInterval" class="carousel slide mt-5 mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/budapest.jpg" aria-hidden="true" alt=""/>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Budapest.</h1>
+            <p>Budapest is the capital and most populous city of Hungary. It is the ninth-largest city in the European Union by population within city limits and the second-largest city on Danube river.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/istanbul.jpeg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Istanbul.</h1>
+            <p>Istanbul is the largest city in Turkey, serving as the country's economic, cultural and historic hub. The city straddles the Bosporus strait, lying in both Europe and Asia, and has a population of over 15 million residents, comprising 19% of the population of Turkey. Istanbul is the most populous European city, and the world's 15th-largest city.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/napoli.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Naples.</h1>
+            <p>Naples is the regional capital of Campania and the third-largest city of Italy, after Rome and Milan, with a population of 967,069 within the city's administrative limits as of 2017. Its province-level municipality is the third-most populous metropolitan city in Italy with a population of 3,115,320 residents, and its metropolitan area stretches beyond the boundaries of the city wall for approximately 20 miles.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/paris.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Paris.</h1>
+            <p>Paris is the capital and most populous city of France, with an estimated population of 2,165,423 residents in 2019 in an area of more than 105 km² making it the 34th most densely populated city in the world in 2020. Since the 17th century, Paris has been one of the world's major centres of finance, diplomacy, commerce, fashion, gastronomy, science, and arts, and has sometimes been referred to as the capital of the world.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/warsaw.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Warsaw.</h1>
+            <p>Warsaw, officially the Capital City of Warsaw, is the capital and largest city of Poland. The metropolis stands on the River Vistula in east-central Poland, and its population is officially estimated at 1.8 million residents within a greater metropolitan area of 3.1 million residents, which makes Warsaw the 7th most-populous capital city in the European Union.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/berlin.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Berlin.</h1>
+            <p>Berlin is the capital and largest city of Germany by both area and population. Its 3.7 million inhabitants make it the European Union's most populous city, according to population within city limits.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/ljubljana.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Ljubljana.</h1>
+            <p>Ljubljana is the capital and largest city of Slovenia. It is the country's cultural, educational, economic, political and administrative center.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="100%" height="100%" src="/assets/app-static/stockholm.jpg" aria-hidden="true" alt=""/>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Stockholm.</h1>
+            <p>Stockholm is the capital and largest city of Sweden as well as the largest urban area in Scandinavia. Approximately 980,000 people live in the municipality, with 1.6 million in the urban area, and 2.4 million in the metropolitan area.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="fw-normal display-2"><mat-icon>flight_takeoff</mat-icon> ?</h1>
+  <p class="text-muted">Use the form below to search all flights available according to your needs.</p>
+
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Departure</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Airport"
+               matInput
+               formControlName="departureAirportCtrl"
+               [matAutocomplete]="departure">
+        <mat-autocomplete #departure="matAutocomplete">
+          <mat-option *ngFor="let option of departureOptions | async" [value]="option.id">
+            <img class="foto" alt="" src="{{option.flagUrl}}"/> <span class="fw-bold">{{option.airportCode}}</span> {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Arrival</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Airport"
+               matInput
+               formControlName="arrivalAirportCtrl"
+               [matAutocomplete]="arrival">
+        <mat-autocomplete #arrival="matAutocomplete">
+          <mat-option *ngFor="let option of arrivalOptions | async" [value]="option.id">
+            <img class="foto" alt="" src="{{option.flagUrl}}"/> <span class="fw-bold">{{option.airportCode}}</span> {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Departure Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="departureDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <div class="radio-group">
+        <mat-radio-group aria-placeholder="Baggage's" matSuffix>
+          <mat-checkbox matSuffix class="mat-radio-button mb-2" (change)="checkBiDirectional($event)">TWO WAY FLIGHT</mat-checkbox>
+          <br /> <small class="text-muted">This means you pre-determine the return day and eventually these flights are more expensive.</small>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="col">
+      <mat-form-field *ngIf="isBiDirectional">
+        <mat-label>Return Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="returnDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+    <button type="submit" class="py-3 px-5 mt-2 mb-2 srch">Search</button>
+  </form>
+</div>
+
+<div class="container mt-5 mb-5">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let flight of flights" (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="col">{{flight.departureAirport.airportCode}}</div>
+          <div class="col"><mat-icon>flight_takeoff</mat-icon></div>
+          <div class="col">{{flight.arrivalAirport.airportCode}}</div>
+          <div class="col-2">{{flight.departureDate | date: 'short'}}</div>
+          <div class="col">{{flight.flightPrice | currency: 'EUR'}}</div>
+          <div class="col">{{flight.flightClass}}</div>
+          <div class="col"><a mat-raised-button color="primary" routerLink="/flights/{{flight.id}}/book">Book</a></div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row" *ngIf="isBiDirectional">
+        <div class="col">{{flight.arrivalAirport.airportCode}}</div>
+        <div class="col"><mat-icon>flight_takeoff</mat-icon></div>
+        <div class="col">{{flight.departureAirport.airportCode}}</div>
+        <div class="col-2">{{flight.returnDate | date: 'short'}}</div>
+        <div class="col">{{flight.flightPrice | currency: 'EUR'}}</div>
+        <div class="col">{{flight.flightClass}}</div>
+        <div class="col"></div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

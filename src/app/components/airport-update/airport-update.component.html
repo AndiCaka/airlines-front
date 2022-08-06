@@ -1,0 +1,31 @@
+<div class="container py-4">
+  <h4 class="display-2 fw-bold text-center">Update flight #<span class="text-danger">{{id}}</span>.</h4>
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6 p-3 m-3 border">
+      <form [formGroup]="airportForm" *ngIf="airportForm" (ngSubmit)="onAirportSubmit()">
+        <div class="form-group p-1 m-1">
+          <label for="name">Name</label>
+          <input type="text" formControlName="name" id="name" class="form-control">
+        </div>
+        <div class="form-group p-1 m-1">
+          <label for="airportCode">Code</label>
+          <input type="text" formControlName="airportCode" id="airportCode" class="form-control">
+        </div>
+        <div class="form-group p-1 m-1">
+          <label for="city">City</label>
+          <input type="text" formControlName="city" id="city" class="form-control">
+        </div>
+        <div class="form-group p-1 m-1">
+          <label for="flagUrl">Flag</label>
+          <input type="text" formControlName="flagUrl" id="flagUrl" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>

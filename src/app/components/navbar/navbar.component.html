@@ -1,0 +1,26 @@
+<mat-toolbar class="menu">
+  <img
+    src="/assets/img/logo_transparent.png"
+    height="40"
+    alt="logo"
+    loading="lazy"
+    style="margin-top: 2px;"
+  />
+  <a mat-button class="mat-button" routerLink="/home"> JetTech Airlines</a>
+  <a mat-button routerLink="/home" class="mat-button"
+  ><mat-icon>flight_takeoff</mat-icon>
+  </a>
+  <a mat-button routerLink="/news" class="mat-button"> News </a>
+  <a mat-button routerLink="/admin" class="mat-button" *ngIf="isAdmin"> Admin </a>
+  <a mat-button routerLink="/bookings" class="mat-button" *ngIf="user">
+    <i class="fa fa-users" aria-hidden="true"></i>
+    My bookings
+  </a>
+  <span class="example-spacer"></span>
+  <a mat-button *ngIf="!user" routerLink="/login" class="mat-button" matSuffix>
+    <mat-icon>account_circle</mat-icon>Login
+  </a>
+  <a mat-button *ngIf="user" class="mat-button" (click)="logout()"
+  ><mat-icon>exit_to_app</mat-icon>Logout
+  </a>
+</mat-toolbar>

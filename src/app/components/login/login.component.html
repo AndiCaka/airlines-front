@@ -1,0 +1,34 @@
+<div class="container mt-5 mb-5">
+  <div class="row text-center">
+    <h1 class="display-1 fw-bolder mt-4 mb-4 text-primary">java9airlines <mat-icon>flight_takeoff</mat-icon></h1>
+  </div>
+</div>
+
+
+<div class="container d-flex justify-content-center mt-5 mb-5">
+  <mat-card class="col-2">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Username"
+        [(ngModel)]="username"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </mat-form-field>
+    <br />
+    <button mat-raised-button (click)="login()" color="primary">
+      Login
+    </button>
+    <p class="mt-2 text-muted">Don't have an account? <a routerLink="/register">Create one now.</a> </p>
+  </mat-card>
+  <div class="row mt-5 mb-5 p-5"></div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-center mt-5 mb-5">
+  <mat-card class="col-5">
+    <form [formGroup]="postForm" (ngSubmit)="onSavePost()" enctype="multipart/form-data">
+      <div class="col">
+        <mat-form-field style="width: 100%">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput id="title" name="title" formControlName="title"/>
+        </mat-form-field>
+      </div>
+      <mat-form-field style="width: 100%">
+        <mat-label>Description</mat-label>
+        <textarea matInput id="description" name="description" formControlName="description"></textarea>
+      </mat-form-field> <br />
+      <mat-form-field style="width: 100%">
+        <mat-label>Image URL</mat-label>
+        <textarea matInput id="imageURL" name="description" formControlName="imageURL"></textarea>
+      </mat-form-field> <br />
+      <button type="submit" mat-raised-button color="primary">Save</button>
+    </form>
+
+    <div *ngIf="hasID" class="col">
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)" />
+      </label>
+      <button class="btn btn-success" (click)="upload()">
+        Upload
+      </button>
+    </div>
+
+    <div *ngIf="currentFile" class="progress col-2">
+      <div class="progress-bar progress-bar-info progress-bar-striped"
+           role="progressbar"
+           attr.aria-valuenow="{{ progress }}"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           [ngStyle]="{ width: progress + '%' }">{{ progress }}%</div>
+    </div>
+  </mat-card>
+</div>
+

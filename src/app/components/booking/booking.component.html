@@ -1,0 +1,36 @@
+<div class="container mt-5 mb-5">
+  <h2 class="mb-5">List of flights booked by you:</h2>
+  <p class="col-8 mt-3 mb-5 text-muted">Here you will find all the bookings made in our system since your signup.
+    You can cancel your booking anytime and the full refunding will be covered by us.
+    Note that if the day of flight has passed you cannot cancel it anymore.
+    Contact us in case of any incovenience.
+  </p>
+  <mat-accordion class="mb-5">
+    <mat-expansion-panel class="mt-3 mb-4" *ngFor="let booking of bookings" (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="col">{{booking.flight.departureAirport.airportCode}}</div>
+          <div class="col"><mat-icon>flight_takeoff</mat-icon></div>
+          <div class="col">{{booking.flight.arrivalAirport.airportCode}}</div>
+          <div class="col-2">{{booking.flight.departureDate | date: 'short'}}</div>
+          <div class="col">{{booking.flight.flightPrice | currency: 'EUR'}}</div>
+          <div class="col-3">{{booking.uuid}}</div>
+          <div class="col">{{booking.baggage}}</div>
+          <div class="col">{{booking.flight.flightClass}}</div>
+          <div class="col"><button mat-raised-button color="warn" (click)="cancelBooking(booking.id)">Cancel</button></div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item><b>List of passengers:</b></mat-list-item>
+        <mat-list-item *ngFor="let passenger of booking.passengers">
+          <div class="col">{{passenger.lastName}}</div>
+          <div class="col">{{passenger.firstName}}</div>
+          <div class="col">{{passenger.address}}</div>
+          <div class="col">{{passenger.passengerType}}</div>
+          <div class="col">{{passenger.passportCode}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

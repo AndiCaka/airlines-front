@@ -1,0 +1,13 @@
+.srch{
+  color: white;
+  font-size: large;
+  border-radius: 3px;
+  background-color: #05164d;
+  border: 0;
+}
+
+.foto{
+  width: 32px;
+  height: auto;
+  margin: 15px;
+}

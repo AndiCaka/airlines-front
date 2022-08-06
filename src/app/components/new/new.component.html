@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <article>
+        <header class="mb-4">
+          <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+          <div class="text-muted fst-italic mb-2">{{post.createdAt | date: 'medium'}}</div>
+          <div class="text-muted mb-2"> by: <span class="text-black">{{post.author.username}}</span> </div>
+        </header>
+        <figure class="mb-4"><img class="img-fluid rounded" src="{{post.imageURL}}" alt="..." /></figure>
+        <section class="mb-5">
+          <p class="fs-5 mb-4">{{post.description}}</p>
+        </section>
+      </article>
+      <section class="mb-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex mt-4 mb-4" *ngFor="let review of post.reviews">
+              <div class="flex-shrink-0"><img class="rounded-circle foto" src="/assets/img/avatar.png" alt="..." /></div>
+              <div class="ms-3">
+                <div class="fw-bold">{{review.user.username}} <small class="text-muted">{{review.createdAt | date: 'medium'}}</small></div>
+               {{review.body}}
+              </div>
+            </div>
+            <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" [(ngModel)]="body"></textarea>
+            <button mat-raised-button color="primary" (click)="reviewPost()">Echo</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

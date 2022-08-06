@@ -1,0 +1,11 @@
+footer{
+  position: sticky;
+  bottom: 0;
+  overflow: scroll;
+  background-color: #05164d;
+  width: 100%;
+  height: auto;
+}
+a{
+  text-decoration: none;
+}

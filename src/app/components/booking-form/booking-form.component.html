@@ -1,0 +1,143 @@
+<div class="container mb-5 mt-5">
+
+  <div class="row m-4 p-4">
+    <div class="col"><h2>{{flight.departureAirport.city}}</h2></div>
+    <div class="col"><mat-icon>flight_takeoff</mat-icon></div>
+    <div class="col"><h2>{{flight.arrivalAirport.city}}</h2></div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row m-4 p-4"></div>
+
+
+
+  <mat-horizontal-stepper
+    class="mat-z5 mt-5"
+    [linear]="true"
+    labelPosition="bottom">
+    <mat-step>
+      <h3 class="text-center">Book this flight</h3>
+      <div class="stepper-buttons text-center">
+        <button mat-raised-button color="primary" matStepperNext>
+          Add Passengers
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <h1 class="text-center mb-3">Passengers</h1>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel
+          [expanded]="step === 0"
+          (opened)="setStep(0)"
+          hideToggle>
+          <mat-expansion-panel-header>
+            <button
+              mat-mini-fab
+              aria-label="Example icon button with a delete icon"
+              class="mx-auto plus-button-expansion m-5"
+              color="primary">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-expansion-panel-header>
+
+          <mat-form-field class="expansion-form">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" [(ngModel)]="passengerFirstName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" [(ngModel)]="passengerLastName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput type="text" [(ngModel)]="passengerAddress" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Passport CODE</mat-label>
+            <input matInput type="text" [(ngModel)]="passengerPassportCode" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Passenger Type</mat-label>
+            <mat-select [(ngModel)]="passengerType">
+              <mat-option value="ADULT">ADULT</mat-option>
+              <mat-option value="CHILD">CHILD</mat-option>
+              <mat-option value="BABY">BABY</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Add</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-grid-list
+        cols="3"
+        rowHeight="100px"
+        [ngClass]="{ 'handset-portrait': false }"
+        class="mt-3 mb-3 d-flex">
+
+        <mat-grid-tile *ngFor="let passenger of passengers">
+          <mat-card class="course-card mat-elevation-z5">
+            <mat-card-header>
+              <mat-card-title>{{ passenger.firstName }} {{passenger.lastName}}</mat-card-title>
+            </mat-card-header>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="stepper-buttons d-flex justify-content-between">
+        <button mat-raised-button matStepperPrevious color="warn">Back</button>
+        <button mat-raised-button color="primary" matStepperNext *ngIf="passengers.length > 0">
+          Next
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <h3 class="text-center">Booking Optionals</h3>
+      <div [formGroup]="bookingForm">
+        <div class="row">
+          <div class="col">
+            <div class="radio-group">
+              <div class="radio-group">
+                <mat-radio-group aria-placeholder="Baggage's" matSuffix>
+                  <mat-checkbox matSuffix class="mat-radio-button mb-2" (change)="checkInOnline($event)">ONLINE CHECK-IN</mat-checkbox>
+                  <p class="text-muted">This means you reduce time at the airport and just provide the email to the officer and you can pass, note: this add an extra 4% of the total price.</p>
+                </mat-radio-group>
+              </div>
+
+              <mat-radio-group aria-placeholder="Baggage's" formControlName="baggage" *ngIf="checkin" matSuffix (change)="computeTotal()">
+                <mat-radio-button value="CHECKED" matSuffix class="mat-radio-button mb-2">CHECKED</mat-radio-button>
+                <p class="text-muted">This means you have more than just a backpack and will add an additional fee of 35 EUR to your booking total price.</p>
+                <mat-radio-button value="CARRY_ON" class="mat-radio-button mb-2">CARRY ON</mat-radio-button>
+                <p class="text-muted">This means you have just a backpack and will not be charged any additional fee.</p>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="col">
+            <h2 class="fw-bold display-3">A last review before booking.</h2>
+            <p>
+              Dear <b>{{user.username}}</b> <br /> you have requested to book the flight with no# {{id}} and here we will have a resume of the passengers, options and pricing.
+            </p>
+            <h4>Passengers</h4>
+            <ul>
+              <li *ngFor="let passenger of passengers">
+                {{passenger.lastName}} {{passenger.firstName}} {{passenger.address}} {{passenger.passportCode}} {{passenger.passengerType}}
+              </li>
+            </ul>
+            <h4>Optionals</h4>
+            <p>{{bookingForm.get('baggage').value}}</p>
+            <h4>Total: </h4>
+            <p>{{realTotal}}    <mat-spinner *ngIf="spin"></mat-spinner></p>
+          </div>
+        </div>
+      </div>
+      <div class="stepper-buttons d-flex justify-content-between">
+        <button mat-raised-button matStepperPrevious color="warn">Back</button>
+        <button mat-raised-button color="primary" (click)="onBook()">Book</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
